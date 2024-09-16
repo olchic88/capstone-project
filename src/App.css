@@ -36,3 +36,108 @@
     transform: rotate(360deg);
   }
 }
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Apply flexbox layout to the form container */
+.form-container {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  max-width: 600px; /* Set a maximum width */
+  margin: 0 auto; /* Center the form on the page */
+  padding: 20px;
+}
+
+/* Style individual form elements */
+.form-container div {
+  margin-bottom: 15px;
+  width: 100%; /* Make each item take full width of container */
+}
+
+/* Style labels and inputs */
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-container input,
+.form-container select,
+.form-container textarea {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.form-container button {
+  padding: 10px 20px;
+  background-color: #f4ce14;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+h1 {
+  font-size: 40pt;
+  color: #495e57;
+}
+
+h2 {
+  font-size: 40pt;
+  color: #f4ce14;
+}
+
+/* Центрирование заголовков на всей странице */
+.header-container {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Центрирование навигации */
+.nav-container {
+  display: flex;
+  justify-content: center; /* Центрирует навигацию по горизонтали */
+  background-color: #495e57;
+  padding: 10px;
+}
+
+.nav-container ul {
+  list-style-type: none; /* Убирает маркеры списка */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-container li {
+  display: inline; /* Выводит элементы списка в одну строку */
+  margin: 0 15px; /* Отступы между элементами */
+}
+
+.nav-container a {
+  color: #ffffff;
+  text-decoration: none; /* Убирает подчеркивание */
+  font-size: 18px;
+}
+
+.nav-container a:hover {
+  text-decoration: underline; /* Добавляет подчеркивание при наведении */
+}
+
+/* Footer styles */
+footer {
+  display: flex;
+  justify-content: center; /* Центрирует содержимое по горизонтали */
+  align-items: center; /* Центрирует содержимое по вертикали */
+  background-color: #495e57; /* Цвет фона футера */
+  color: white; /* Цвет текста */
+  padding: 10px; /* Отступы внутри футера */
+  font-size: 14px; /* Размер шрифта */
+
+  bottom: 0; /* Располагает футер внизу страницы */
+  width: 100%; /* Занимает всю ширину страницы */
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.3); /* Добавляет тень для улучшения видимости */
+}

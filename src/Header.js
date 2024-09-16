@@ -1,8 +1,9 @@
 import React from "react";
+import "./App.css";
 
 function Header() {
   return (
-    <header>
+    <header className="header-container">
       <img src="/icons_assets/Logo.svg" alt="Little Lemon Logo" />
       <h1>Little Lemon Restaurant</h1>
     </header>
