@@ -1,28 +1,31 @@
 import React, { useState } from "react";
-import "./App.css"; // Импортируйте CSS файл
+import "./App.css";
 
-const ReservationForm = () => {
-  // State for form fields
+const ReservationForm = ({ availableTimes, updateTimes }) => {
   const [seatingOption, setSeatingOption] = useState("");
+  const [occasion, setOccasion] = useState("");
   const [comments, setComments] = useState("");
   const [email, setEmail] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [diners, setDiners] = useState(1);
 
-  // Handle form submission
+  const handleDateChange = (e) => {
+    const newDate = e.target.value;
+    setDate(newDate);
+    updateTimes(newDate); // Обновляем доступное время на основе выбранной даты
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    alert(`Reservation confirmed for ${diners} diners at ${time} on ${date}`);
+    alert(
+      `Reservation confirmed for ${diners} diners at ${time} on ${date}. Occasion: ${occasion}`
+    );
   };
 
   return (
     <div className="form-container">
-      {" "}
-      {/* Apply the form container class */}
       <form onSubmit={handleSubmit}>
-        {/* Seating Options */}
         <div>
           <label htmlFor="seating">Seating Options</label>
           <select
@@ -36,7 +39,20 @@ const ReservationForm = () => {
           </select>
         </div>
 
-        {/* Additional Comments */}
+        <div>
+          <label htmlFor="occasion">Occasion</label>
+          <select
+            id="occasion"
+            value={occasion}
+            onChange={(e) => setOccasion(e.target.value)}
+          >
+            <option value="">Select occasion</option>
+            <option value="Birthday">Birthday</option>
+            <option value="Anniversary">Anniversary</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
         <div>
           <label htmlFor="comments">Additional Comments</label>
           <textarea
@@ -46,7 +62,6 @@ const ReservationForm = () => {
           />
         </div>
 
-        {/* Email for Confirmation */}
         <div>
           <label htmlFor="email">Confirmation Email</label>
           <input
@@ -58,31 +73,33 @@ const ReservationForm = () => {
           />
         </div>
 
-        {/* Date Selection */}
         <div>
           <label htmlFor="date">Select Date</label>
           <input
             type="date"
             id="date"
             value={date}
-            onChange={(e) => setDate(e.target.value)}
+            onChange={handleDateChange}
             required
           />
         </div>
 
-        {/* Time Selection */}
         <div>
           <label htmlFor="time">Select Time</label>
-          <input
-            type="time"
+          <select
             id="time"
             value={time}
             onChange={(e) => setTime(e.target.value)}
-            required
-          />
+          >
+            <option value="">Select time</option>
+            {availableTimes.map((availableTime) => (
+              <option key={availableTime} value={availableTime}>
+                {availableTime}
+              </option>
+            ))}
+          </select>
         </div>
 
-        {/* Number of Diners */}
         <div>
           <label htmlFor="diners">Number of Diners</label>
           <input
@@ -90,12 +107,11 @@ const ReservationForm = () => {
             id="diners"
             min="1"
             value={diners}
-            onChange={(e) => setDiners(e.target.value)}
+            onChange={(e) => setDiners(Number(e.target.value))}
             required
           />
         </div>
 
-        {/* Submit Button */}
         <button type="submit">Reserve a Table</button>
       </form>
     </div>
